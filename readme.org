@@ -1,12 +1,12 @@
 *  asciibooth
 
 this is literally a photobooth that you run from the command line that prints to
-a dot matrix printer and saves the output to a website.
+a dot matrix printer and saves the output to a [[http://tilde.town/~vilmibm/asciigallery/][website]].
 
 i don't expect anyone but me to find this useful.
 
 * author
-written by @nate_smith based on an idea by @spine_cone
+written by [[https://twitter.com/nate_smith][@nate_smith]] based on an idea by [[https://twitter.com/spine_cone][@spine_cone]]
 
 * license
  GPL v3
