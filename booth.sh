@@ -16,7 +16,7 @@ function upload () {
     echo "uploading..." >&2
     jp2a --height=30 --width=60 --output=$final.html --html --colors --fill /tmp/shotsmall.jpg
 
-    if [ ! -z $(ls index.html 2>/dev/null) ]; then
+    if [ -e index.html ]; then
         cp index.html index.html.bak
     fi
 
