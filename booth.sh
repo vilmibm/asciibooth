@@ -4,7 +4,6 @@ action=$1
 
 local_portrait_path="portraits"
 upload_path="vilmibm@tilde.town:/home/vilmibm/public_html/asciigallery"
-remote_portrait_path="$upload_path/portraits/"
 screenshot=00000001.png
 final="$local_portrait_path/$(date --iso-8601=seconds -u).portrait"
 
@@ -17,18 +16,16 @@ function upload () {
     echo "uploading..." >&2
     jp2a --height=30 --width=60 --output=$final.html --html --colors --fill /tmp/shotsmall.jpg
 
-    scp $final.html $remote_portrait_path
-
-    if [ -z $(ls index.html 2>/dev/null) ]; then
+    if [ ! -z $(ls index.html 2>/dev/null) ]; then
         cp index.html index.html.bak
     fi
 
     cp index.top.html index.html
 
-    for portrait in $(ls $local_portrait_path | egrep "html$"); do
+    for portrait in $(ls $local_portrait_path | egrep "html$" | sort -r | head -n24); do
         echo "<div class=\"portrait\">" >> index.html
-        # TODO var for url
-        echo "<iframe src=\"portraits/$portrait\"></iframe>" >> index.html
+        echo $(tail -n +18 $local_portrait_path/$portrait | head -n +3 | perl -p -e 's/\n//') >> index.html
+        echo "<sub>$(echo $portrait | sed 's/.portrait.html//')</sub>" >> index.html
         echo "</div>" >> index.html
     done
 
