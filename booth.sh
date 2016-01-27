@@ -9,7 +9,7 @@ final="$local_portrait_path/$(date --iso-8601=seconds -u).portrait"
 
 function print () {
     echo "printing..." >&2
-    # lpr $final.txt
+    lpr $final.txt
 }
 
 function upload () {
